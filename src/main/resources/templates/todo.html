@@ -1,0 +1,18 @@
+<!DOCTYPE HTML>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+    <title>Trying my best</title>
+    <link rel="stylesheet" href="style.css">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<h1>Hej</h1>
+
+<ul>
+
+    <th:block th:each="todo : ${todos}" >
+        <li id="hi" th:text="${todo.text}"></li>
+    </th:block>
+</ul>
+</body>
+</html>
