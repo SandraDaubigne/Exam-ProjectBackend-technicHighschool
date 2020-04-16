@@ -9,7 +9,6 @@
 
 <div>
     <h1>TODO</h1>
-
     <form th:action="@{/}" method="post">
         <input type="text" placeholder="Write a todo" name="t1">
         <button type="submit">Push me</button>
@@ -17,8 +16,12 @@
 
 
     <ul>
-        <th:block th:each="todo : ${todos}" >
-            <li id="hi" th:text="${todo.text}"></li>
+        <th:block th:each="todo : ${todos}">
+            <div>
+                <input type="checkbox" name="active" th:checked="${todo.active}"/>
+                <label th:text="${todo.text}"></label>
+            </div>
+            <li id="hi" ></li>
         </th:block>
     </ul>
 
