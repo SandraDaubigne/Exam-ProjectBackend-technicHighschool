@@ -7,14 +7,24 @@
 </head>
 <body>
 
+<div>
+    <h1>TODO</h1>
 
-<h1>TODO</h1>
+    <form th:action="@{/}" method="post">
+        <input type="text" placeholder="Write a todo" name="t1">
+        <button type="submit">Push me</button>
+    </form>
 
-<!--Output-->
-<ul>
-    <th:block th:each="todo : ${todos}" >
-        <li id="hi" th:text="${todo.text}"></li>
-    </th:block>
-</ul>
+
+    <ul>
+        <th:block th:each="todo : ${todos}" >
+            <li id="hi" th:text="${todo.text}"></li>
+        </th:block>
+    </ul>
+
+</div>
+
+
+
 </body>
 </html>

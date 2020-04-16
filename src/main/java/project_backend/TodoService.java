@@ -19,4 +19,10 @@ public class TodoService {
         todoRepository.findAll().forEach(todos::add);
         return todos;
     }
+
+    public Todo createTodo(String text) {
+        Todo todo = new Todo();
+        todo.setText(text);
+        return todoRepository.save(todo);
+    }
 }
