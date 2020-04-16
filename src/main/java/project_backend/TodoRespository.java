@@ -1,4 +1,6 @@
 package project_backend;
 
-public interface TodoRespository {
+import org.springframework.data.repository.CrudRepository;
+
+public interface TodoRespository extends CrudRepository<Todo, Integer> {
 }
