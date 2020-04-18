@@ -9,6 +9,7 @@
 
 <div id="master">
     <h1>TODO</h1>
+
     <form th:action="@{/}" method="post">
         <input type="text" placeholder="Write a todo" name="t1">
         <button type="submit">Push me</button>
@@ -16,6 +17,7 @@
 
 
     <ul>
+        <!---Add select box, show all selectbox, and individual delete button-->
         <th:block th:each="todo : ${todos}">
             <div>
                 <input type="checkbox" name="active" th:checked="${todo.active}"/>
@@ -24,6 +26,29 @@
             <li id="hi" ></li>
         </th:block>
     </ul>
+
+    <!---Show all button-->
+    <form th:action="@{/all}" method="post">
+        <button type="submit">Show all</button>
+    </form>
+
+    <!---Show Active button-->
+    <form th:action="@{/active}" method="post">
+        <button type="submit">Active</button>
+    </form>
+
+    <!--Show Completed button-->
+    <form th:action="@{/showcompleted}" method="post">
+        <button type="submit">Completed</button>
+    </form>
+
+    <!--Show Delete al completet button-->
+    <form th:action="@{/deleteallcompleted}" method="post">
+        <button type="submit">Delete all Completed</button>
+    </form>
+
+    <p th:text="${message}"></p>
+
 
 </div>
 

@@ -16,25 +16,11 @@ public class TodoController {
     @Autowired
     TodoService todoService;
 
-    @PostMapping("/checked")
-    public String showCheckbox(Model model) {
-        boolean myBooleanVariable = false;
-        model.addAttribute("myBooleanVariable", myBooleanVariable);
-        return "sample-checkbox";
-    }
-
-
-
-
-
-
-
-
     //Förser wiew med info från backenden
     //Det den behöver ha för att visa det den ska visa.
     //Denna request anropas då du är på urlen eller uppdaterar
     @GetMapping("/")
-    public String listTodo(Model model){
+    public String startPage(Model model){
         //Behöver listan för att kunna rendera alla todoer
         //Jag har tillgång till alla objekt från tds här pga att metoden getall skapar
         //och returnerar en lista av alla tds. Så därför kan jag använda tds attributer även
@@ -44,22 +30,69 @@ public class TodoController {
         return "todo";
     }
 
-
     //Är det som kommer in från Wiew
     //Backend behöver veta och kunna ta emot följande saker:
     @PostMapping("/")
     public String saveTodo(@RequestParam("t1")String text, Model model){
-
         //den tar emot en parameter som skickas vidare till serviceklassen
         todoService.createTodo(text);
-
         //Den tar emot ett model-objekt för att kunna
         // skicka listan med objekten till variablen todoes i templatens forloop
         List<Todo> listTodo = todoService.getAll();
         model.addAttribute("todos", listTodo);
-
         return "todo";
-
     }
+
+    @PostMapping("/all")
+    public String all(Model model){
+        model.addAttribute("message", "You did press the ALL button");
+        List<Todo> listTodo = todoService.getAll();
+        model.addAttribute("todos", listTodo);
+        return "todo";
+    }
+
+    @PostMapping("/active")
+    public String active(Model model){
+        model.addAttribute("message", "You did press the ACTIVE button");
+        List<Todo> listTodo = todoService.getAll();
+        model.addAttribute("todos", listTodo);
+        return "todo";
+    }
+
+    @PostMapping("/showcompleted")
+    public String showCompleted(Model model){
+        model.addAttribute("message", "You did press the ALL COMPLETED button");
+        List<Todo> listTodo = todoService.getAll();
+        model.addAttribute("todos", listTodo);
+        return "todo";
+    }
+
+    @PostMapping("/deleteallcompleted")
+    public String deleteAllCompleted(Model model){
+        model.addAttribute("message", "You did press the DELETE ALL COMPLETED button");
+        List<Todo> listTodo = todoService.getAll();
+        model.addAttribute("todos", listTodo);
+        return "todo";
+    }
+
+
+
+
+
+
+
+    /*
+    @PostMapping("/checked")
+    public String showCheckbox(Model model) {
+        boolean myBooleanVariable = false;
+        model.addAttribute("myBooleanVariable", myBooleanVariable);
+        return "sample-checkbox";
+    }
+
+    */
+
+
+
+
 
 }
