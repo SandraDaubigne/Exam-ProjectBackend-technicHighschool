@@ -73,8 +73,8 @@ public class TodoController {
 
     //When you send i a path from the form ypu must have patvariables and not requestparameters these are for name="
     @PostMapping("/deleteitem")
-    public String deleteItem(Model model, @RequestParam String id){
-
+    public String deleteItem(Model model, @RequestParam int id){
+        todoService.deleteTodo(id);
         model.addAttribute("message", "You did press the DELETE THIS ITEM button with id number " +id);
 
         List<Todo> listTodo = todoService.getAll();
