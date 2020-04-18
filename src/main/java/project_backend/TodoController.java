@@ -3,10 +3,7 @@ package project_backend;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -70,6 +67,16 @@ public class TodoController {
     @PostMapping("/deleteallcompleted")
     public String deleteAllCompleted(Model model){
         model.addAttribute("message", "You did press the DELETE ALL COMPLETED button");
+        List<Todo> listTodo = todoService.getAll();
+        model.addAttribute("todos", listTodo);
+        return "todo";
+    }
+
+    @GetMapping("/deleteitem/{id}")
+    public String deleteItem(Model model, @PathVariable String id){
+
+        model.addAttribute("message", "You did press the DELETE THIS ITEM button with id number " +id);
+
         List<Todo> listTodo = todoService.getAll();
         model.addAttribute("todos", listTodo);
         return "todo";

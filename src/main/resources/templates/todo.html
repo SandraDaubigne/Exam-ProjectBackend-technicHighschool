@@ -22,6 +22,9 @@
             <div>
                 <input type="checkbox" name="active" th:checked="${todo.active}"/>
                 <label th:text="${todo.text}"></label>
+                <a th:href="@{'/deleteitem/' + ${todo.id}}">
+                    <button type="submit">Delete this item</button>
+                </a>
             </div>
             <li id="hi" ></li>
         </th:block>
