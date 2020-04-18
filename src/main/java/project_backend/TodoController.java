@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @Controller
@@ -30,7 +29,7 @@ public class TodoController {
     //Är det som kommer in från Wiew
     //Backend behöver veta och kunna ta emot följande saker:
     @PostMapping("/")
-    public String saveTodo(@RequestParam("t1")String text, Model model){
+    public String saveTodo(@RequestParam("t1") String text, Model model){
         //den tar emot en parameter som skickas vidare till serviceklassen
         todoService.createTodo(text);
         //Den tar emot ett model-objekt för att kunna
@@ -72,8 +71,9 @@ public class TodoController {
         return "todo";
     }
 
-    @GetMapping("/deleteitem/{id}")
-    public String deleteItem(Model model, @PathVariable String id){
+    //When you send i a path from the form ypu must have patvariables and not requestparameters these are for name="
+    @PostMapping("/deleteitem")
+    public String deleteItem(Model model, @RequestParam String id){
 
         model.addAttribute("message", "You did press the DELETE THIS ITEM button with id number " +id);
 
@@ -81,10 +81,6 @@ public class TodoController {
         model.addAttribute("todos", listTodo);
         return "todo";
     }
-
-
-
-
 
 
 
