@@ -71,7 +71,7 @@ public class TodoController {
         return "todo";
     }
 
-    //Delete single item
+    //Delete single item from frontend
     //When you send i a path from the form ypu must have patvariables and not requestparameters these are for name="
     @PostMapping("/deleteitem")
     public String deleteItem(Model model, @RequestParam int id){
