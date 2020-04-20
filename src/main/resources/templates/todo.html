@@ -11,12 +11,35 @@
                 checkboxes[i].checked = source.checked;
             }
         }
+
+        function myFunction() {
+            // Get the checkbox
+            var checkBox = document.getElementById("myCheck");
+            // Get the output text
+            var text = document.getElementById("text");
+
+            // If the checkbox is checked, display the output text
+            if (checkBox.checked == true){
+                const items ="Checked"
+                document.getElementById("see").innerHTML = items;
+            } else {
+                const items ="Not Checked"
+                document.getElementById("see").innerHTML = items;
+            }
+        }
     </script>
 </head>
 <body>
 
 <div id="master">
     <h1>TODO</h1>
+
+    <p id="see"></p>
+
+
+    Checkbox: <input type="checkbox" id="myCheck" onclick="myFunction()">
+
+    <p id="text" style="display:none">Checkbox is CHECKED!</p>
 
     <form th:action="@{/}" method="post">
         <input type="text" placeholder="Write a todo" name="t1">
