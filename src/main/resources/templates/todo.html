@@ -5,6 +5,11 @@
     <link rel="stylesheet" href="style.css">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <script>
+
+        var todos = "[[${todos}]]";
+        
+        console.log(todo);
+
         function selectAll(source) {
             let checkboxes = document.getElementsByClassName('box');
             for(let i=0, n=checkboxes.length; i<n; i++) {
