@@ -4,6 +4,16 @@
     <title>Trying my best</title>
     <link rel="stylesheet" href="style.css">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+    <script>
+        function selectAll(source) {
+            let checkboxes = document.getElementsByClassName('box');
+            for(let i=0, n=checkboxes.length; i<n; i++) {
+                checkboxes[i].checked = source.checked;
+            }
+        }
+    </script>
+
 </head>
 <body>
 
@@ -18,9 +28,10 @@
 
     <ul>
         <!---Add select box, show all selectbox, and individual delete button-->
+        <input type="checkbox" id="checkBoxAll" onClick="selectAll(this)"/>
         <th:block th:each="todo : ${todos}">
             <div>
-                <input type="checkbox" name="active" th:checked="${todo.active}"/>
+                <input type="checkbox" class="box" th:value="${todo.text}" name="todotext"/>
                 <label th:text="${todo.text}"></label>
 
                 <form th:action="@{/deleteitem}" method="post">
@@ -58,7 +69,8 @@
 
 </div>
 
-
-
 </body>
+
+
+
 </html>
