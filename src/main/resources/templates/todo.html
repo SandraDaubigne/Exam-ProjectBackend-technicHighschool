@@ -48,8 +48,8 @@
             <div>
 
 
-                <input type="checkbox" onChange="valueChange(this)" th:value="${todo.id} "class="box"/>
-                <label th:text="${todo.text}"></label>
+              <input type="checkbox" onChange="valueChange(this)" th:value="${todo.id}" class="box"/>
+              <label th:text="${todo.text}"></label>
 
                 <form th:action="@{/deleteitem}" method="post">
                     <input type="hidden" name="id" th:value="${todo.id}" />
