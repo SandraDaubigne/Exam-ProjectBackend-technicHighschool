@@ -6,9 +6,6 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <script>
 
-        var todos = "[[${todos}]]";
-        
-        console.log(todo);
 
         function selectAll(source) {
             let checkboxes = document.getElementsByClassName('box');
@@ -17,34 +14,26 @@
             }
         }
 
-        function myFunction() {
-            // Get the checkbox
-            var checkBox = document.getElementById("myCheck");
-            // Get the output text
-            var text = document.getElementById("text");
 
-            // If the checkbox is checked, display the output text
-            if (checkBox.checked == true){
-                const items ="Checked"
-                document.getElementById("see").innerHTML = items;
-            } else {
-                const items ="Not Checked"
-                document.getElementById("see").innerHTML = items;
-            }
+        valueChange = function(item){
+            alert(item.value);
         }
+
+
     </script>
 </head>
 <body>
 
+<form name="form1" method="post" action=" insert_data.php">
+    Delivery Location
+    <input onChange="valueChange(this)" type="checkbox" name="area" value="0">Inside city </input>
+    <input onChange="valueChange(this)" type="checkbox" name="area" value="80">Outside city </input>
+</form>
+
 <div id="master">
     <h1>TODO</h1>
 
-    <p id="see"></p>
 
-
-    Checkbox: <input type="checkbox" id="myCheck" onclick="myFunction()">
-
-    <p id="text" style="display:none">Checkbox is CHECKED!</p>
 
     <form th:action="@{/}" method="post">
         <input type="text" placeholder="Write a todo" name="t1">
@@ -59,7 +48,7 @@
             <div>
 
 
-                <input type="checkbox" class="box" name="active" th:checked="${todo.active}"/>
+                <input type="checkbox" onChange="valueChange(this)" th:value="${todo.id} "class="box"/>
                 <label th:text="${todo.text}"></label>
 
                 <form th:action="@{/deleteitem}" method="post">
