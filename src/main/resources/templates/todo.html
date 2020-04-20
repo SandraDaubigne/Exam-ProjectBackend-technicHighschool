@@ -29,6 +29,8 @@
         <input type="checkbox" id="checkBoxAll" onClick="selectAll(this)"/>
         <th:block th:each="todo : ${todos}">
             <div>
+
+
                 <input type="checkbox" class="box" name="active" th:checked="${todo.active}"/>
                 <label th:text="${todo.text}"></label>
 
