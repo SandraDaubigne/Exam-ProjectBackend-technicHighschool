@@ -12,6 +12,8 @@
                 checkboxes[i].checked = source.checked;
             }
         }
+        
+
     </script>
 
 </head>
@@ -31,7 +33,8 @@
         <input type="checkbox" id="checkBoxAll" onClick="selectAll(this)"/>
         <th:block th:each="todo : ${todos}">
             <div>
-                <input type="checkbox" class="box" th:value="${todo.text}" name="todotext"/>
+
+                <input type="checkbox" class="box" th:value="${todo.id}" name="todotext" />
                 <label th:text="${todo.text}"></label>
 
                 <form th:action="@{/deleteitem}" method="post">
