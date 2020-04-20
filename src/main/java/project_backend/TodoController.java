@@ -82,7 +82,7 @@ public class TodoController {
         model.addAttribute("todos", listTodo);
         return "todo";
     }
-    
+
 
 
 
