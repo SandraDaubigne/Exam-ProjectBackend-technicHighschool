@@ -6,7 +6,6 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <script>
 
-
         function selectAll(source) {
             let checkboxes = document.getElementsByClassName('box');
             for(let i=0, n=checkboxes.length; i<n; i++) {
@@ -14,12 +13,10 @@
             }
         }
 
-
         valueChange = function(item){
             var id = item.value;
             var text = item.name;
             var active = item.checked;
-
 
            const data={id, text, active}
 
@@ -34,26 +31,13 @@
             //alert(id + text + active);
         }
 
-
-
-
-
-
-
-
     </script>
 </head>
 <body>
 
-<form name="form1" method="post" action=" insert_data.php">
-    Delivery Location
-    <input onChange="valueChange(this)" type="checkbox" name="area" value="0">Inside city </input>
-    <input onChange="valueChange(this)" type="checkbox" name="area" value="80">Outside city </input>
-</form>
 
 <div id="master">
     <h1>TODO</h1>
-
 
 
     <form th:action="@{/create}" method="post">
@@ -64,7 +48,10 @@
 
     <ul>
         <!---Add select box, show all selectbox, and individual delete button-->
-        <input type="checkbox" id="checkBoxAll" onClick="selectAll(this)"/>
+        <form th:action="@{/selectallboxes}" method="post">
+            <button type="submit">Select all</button>
+        </form>
+
         <th:block th:each="todo : ${todos}">
             <div>
 

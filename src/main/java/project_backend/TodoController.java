@@ -13,25 +13,15 @@ public class TodoController {
     @Autowired
     TodoService todoService;
 
-    //Förser wiew med info från backenden
-    //Det den behöver ha för att visa det den ska visa.
-    //Denna request anropas då du är på urlen eller uppdaterar
-
-
-
+    //Startpage
     @GetMapping("/todo")
     public String startPage(Model model){
-        //Behöver listan för att kunna rendera alla todoer
-        //Jag har tillgång till alla objekt från tds här pga att metoden getall skapar
-        //och returnerar en lista av alla tds. Så därför kan jag använda tds attributer även
-        //i Thymeleaf direkt.
         List<Todo> listTodo = todoService.getAll();
         model.addAttribute("todos", listTodo);
         return "todo";
     }
 
-    //Är det som kommer in från Wiew
-    //Backend behöver veta och kunna ta emot följande saker:
+    //Create a todoes
     @PostMapping("/create")
     public String saveTodo(@RequestParam("t1") String text){
         //den tar emot en parameter som skickas vidare till serviceklassen
@@ -39,54 +29,65 @@ public class TodoController {
         return "redirect:todo";
     }
 
+
+    //Check a todoes and change boolean in DB
+    @RequestMapping(value = "/api",method = RequestMethod.PUT,produces = MediaType.APPLICATION_JSON_VALUE)
+    public void updateItem(@RequestBody Todo todo){
+        todoService.updateActive(todo);
+    }
+
+
+    //BUTTONS:
+
+    //Delete a todoes
+    @PostMapping("/deleteitem")
+    public String deleteItem(Model model, @RequestParam int id){
+        todoService.deleteTodo(id);
+        model.addAttribute("message", "You did press the DELETE THIS ITEM button with id number " +id);
+        return "redirect:todo";
+    }
+
+    //Toggla mellan boolean (icheckade eller inte)
+    @PostMapping("/selectallboxes")
+    public String secectAllBoxes(Model model){
+        model.addAttribute("message", "You did press the SELECT ALL button");
+        return "todo";
+    }
+
+
+
+    //See all todoes
+    //samma som get all
     @PostMapping("/all")
     public String all(Model model){
         model.addAttribute("message", "You did press the ALL button");
-        List<Todo> listTodo = todoService.getAll();
-        model.addAttribute("todos", listTodo);
-        return "todo";
+        return "redirect:todo";
     }
 
+
+    //Visa alla ocheckade
     @PostMapping("/active")
     public String active(Model model){
-        model.addAttribute("message", "You did press the ACTIVE button");
-        List<Todo> listTodo = todoService.getAll();
-        model.addAttribute("todos", listTodo);
+
         return "todo";
     }
 
+    //Show completed- Visa alla checkade
     @PostMapping("/showcompleted")
     public String showCompleted(Model model){
-        model.addAttribute("message", "You did press the ALL COMPLETED button");
-        List<Todo> listTodo = todoService.getAll();
+        List<Todo> listTodo = todoService.getAllActive();
         model.addAttribute("todos", listTodo);
+        model.addAttribute("message", "You did press the ACTIVE button");
         return "todo";
     }
 
+    //Delete all checked todoes - ta bort alla checkade
     @PostMapping("/deleteallcompleted")
     public String deleteAllCompleted(Model model){
         model.addAttribute("message", "You did press the DELETE ALL COMPLETED button");
         List<Todo> listTodo = todoService.getAll();
         model.addAttribute("todos", listTodo);
         return "todo";
-    }
-
-    //Delete single item
-    //When you send i a path from the form ypu must have patvariables and not requestparameters these are for name="
-    @PostMapping("/deleteitem")
-    public String deleteItem(Model model, @RequestParam int id){
-        todoService.deleteTodo(id);
-        model.addAttribute("message", "You did press the DELETE THIS ITEM button with id number " +id);
-
-        List<Todo> listTodo = todoService.getAll();
-        model.addAttribute("todos", listTodo);
-        return "todo";
-    }
-
-
-    @RequestMapping(value = "/api",method = RequestMethod.PUT,produces = MediaType.APPLICATION_JSON_VALUE)
-    public void updateItem(@RequestBody Todo todo){
-        todoService.updateActive(todo);
     }
 
 
