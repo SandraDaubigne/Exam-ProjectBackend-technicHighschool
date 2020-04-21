@@ -33,13 +33,9 @@ public class TodoController {
     //Är det som kommer in från Wiew
     //Backend behöver veta och kunna ta emot följande saker:
     @PostMapping("/create")
-    public String saveTodo(@RequestParam("t1") String text, Model model){
+    public String saveTodo(@RequestParam("t1") String text){
         //den tar emot en parameter som skickas vidare till serviceklassen
         todoService.createTodo(text);
-        //Den tar emot ett model-objekt för att kunna
-        // skicka listan med objekten till variablen todoes i templatens forloop
-        List<Todo> listTodo = todoService.getAll();
-        model.addAttribute("todos", listTodo);
         return "redirect:todo";
     }
 
@@ -87,17 +83,10 @@ public class TodoController {
         return "todo";
     }
 
-    @RequestMapping(method = RequestMethod.PUT, value = "/api{id}")
-    public void updateActive(@RequestBody Todo todo, @PathVariable int id) {
-
-    }
-
-    //@PutMapping("/api/{id}")
 
     @RequestMapping(value = "/api",method = RequestMethod.PUT,produces = MediaType.APPLICATION_JSON_VALUE)
     public void updateItem(@RequestBody Todo todo){
         todoService.updateActive(todo);
-
     }
 
 
