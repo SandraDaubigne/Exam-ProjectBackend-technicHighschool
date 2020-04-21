@@ -1,6 +1,7 @@
 package project_backend;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -15,6 +16,9 @@ public class TodoController {
     //Förser wiew med info från backenden
     //Det den behöver ha för att visa det den ska visa.
     //Denna request anropas då du är på urlen eller uppdaterar
+
+
+
     @GetMapping("/")
     public String startPage(Model model){
         //Behöver listan för att kunna rendera alla todoer
@@ -28,7 +32,7 @@ public class TodoController {
 
     //Är det som kommer in från Wiew
     //Backend behöver veta och kunna ta emot följande saker:
-    @PostMapping("/")
+    @PostMapping("/create")
     public String saveTodo(@RequestParam("t1") String text, Model model){
         //den tar emot en parameter som skickas vidare till serviceklassen
         todoService.createTodo(text);
@@ -83,19 +87,21 @@ public class TodoController {
         return "todo";
     }
 
+    @RequestMapping(method = RequestMethod.PUT, value = "/api{id}")
+    public void updateActive(@RequestBody Todo todo, @PathVariable int id) {
 
-
-
-
-    /*
-    @PostMapping("/checked")
-    public String showCheckbox(Model model) {
-        boolean myBooleanVariable = false;
-        model.addAttribute("myBooleanVariable", myBooleanVariable);
-        return "sample-checkbox";
     }
 
-    */
+    //@PutMapping("/api/{id}")
+
+    @RequestMapping(value = "/api",method = RequestMethod.PUT,produces = MediaType.APPLICATION_JSON_VALUE)
+    public void updateItem(@RequestBody Todo todo){
+        todoService.updateActive(todo);
+
+    }
+
+
+
 
 
 
