@@ -19,7 +19,7 @@ public class TodoController {
 
 
 
-    @GetMapping("/")
+    @GetMapping("/todo")
     public String startPage(Model model){
         //Behöver listan för att kunna rendera alla todoer
         //Jag har tillgång till alla objekt från tds här pga att metoden getall skapar
@@ -40,7 +40,7 @@ public class TodoController {
         // skicka listan med objekten till variablen todoes i templatens forloop
         List<Todo> listTodo = todoService.getAll();
         model.addAttribute("todos", listTodo);
-        return "todo";
+        return "redirect:todo";
     }
 
     @PostMapping("/all")
