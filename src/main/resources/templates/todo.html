@@ -16,7 +16,7 @@
 
 
         valueChange = function(item){
-            alert(item.value);
+            alert(item.value + item.name + item.checked);
         }
 
 
@@ -48,7 +48,7 @@
             <div>
 
 
-              <input type="checkbox" onChange="valueChange(this)" th:value="${todo.id}" class="box"/>
+              <input type="checkbox" onChange="valueChange(this)" th:name="${todo.text}" th:value="${todo.id}" th:checked="${todo.active}" class="box"/>
               <label th:text="${todo.text}"></label>
 
                 <form th:action="@{/deleteitem}" method="post">
