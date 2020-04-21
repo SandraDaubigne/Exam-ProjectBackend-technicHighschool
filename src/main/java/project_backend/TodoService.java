@@ -47,4 +47,12 @@ public class TodoService {
 
     }
 
+    public List<Todo> getAllNotActive(){
+        List<Todo> todos = new ArrayList<>();
+        todoRepository.findAll().forEach(todos::add);
+
+        return todos.stream().filter(todo -> todo.getActive() == false).collect(Collectors.toList());
+
+    }
+
 }

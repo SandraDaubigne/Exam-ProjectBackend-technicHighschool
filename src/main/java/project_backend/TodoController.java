@@ -60,7 +60,7 @@ public class TodoController {
     //samma som get all
     @PostMapping("/all")
     public String all(Model model){
-        model.addAttribute("message", "You did press the ALL button");
+        model.addAttribute("message", "Get ALL");
         return "redirect:todo";
     }
 
@@ -68,7 +68,9 @@ public class TodoController {
     //Visa alla ocheckade
     @PostMapping("/active")
     public String active(Model model){
-
+        List<Todo> listTodo = todoService.getAllNotActive();
+        model.addAttribute("todos", listTodo);
+        model.addAttribute("message", "Get all not checked");
         return "todo";
     }
 
@@ -77,7 +79,7 @@ public class TodoController {
     public String showCompleted(Model model){
         List<Todo> listTodo = todoService.getAllActive();
         model.addAttribute("todos", listTodo);
-        model.addAttribute("message", "You did press the ACTIVE button");
+        model.addAttribute("message", "Get all checked");
         return "todo";
     }
 
