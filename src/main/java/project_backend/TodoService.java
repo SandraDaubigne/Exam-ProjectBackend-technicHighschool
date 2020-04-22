@@ -55,4 +55,10 @@ public class TodoService {
 
     }
 
+    public void deleteActiveTodo() {
+        List<Todo> todos = new ArrayList<>();
+        todoRepository.findAll().forEach(todos :: add);
+        todos.stream().filter(todo -> todo.getActive() == true).forEach(todo -> deleteTodo(todo.getId()));
+    }
+
 }

@@ -85,11 +85,9 @@ public class TodoController {
 
     //Delete all checked todoes - ta bort alla checkade
     @PostMapping("/deleteallcompleted")
-    public String deleteAllCompleted(Model model){
-        model.addAttribute("message", "You did press the DELETE ALL COMPLETED button");
-        List<Todo> listTodo = todoService.getAll();
-        model.addAttribute("todos", listTodo);
-        return "todo";
+    public String deleteAllCompleted(){
+         todoService.deleteActiveTodo();
+        return "redirect:todo";
     }
 
 
