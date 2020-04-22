@@ -1,4 +1,126 @@
-body{
-    background-color: aquamarine;
+
+#container{
+    width: 40%;
+    margin: auto;
+    background-color: #f5f5f5;
+    padding-left: 5%;
+    padding-right: 5%;
+    padding-bottom: 20px;
+    border-radius: 2%;
 }
+
+#todoHeader{
+    display: flex;
+    justify-content: space-around;
+    font-style: italic;
+    font-size: 1rem;
+    color: rgb(195, 224, 241);
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/*----INPUT----*/
+#input{
+    display:grid;
+    grid-template-columns: 80% 20%;
+    margin-bottom: 10px;
+}
+
+#input input{
+    border:none;
+    font-style: italic;
+    font-size: 2rem;
+    color: rgb(195, 224, 241);
+    padding: 10px;
+}
+
+input::placeholder {
+    font-style: italic;
+    font-size: 2rem;
+    color: rgb(195, 224, 241);
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+
+/*---OUTPUT--*/
+#loop{
+    display:grid;
+    grid-template-columns: 80% 20%;
+    background-color: white;
+    align-items: center;
+}
+
+
+#loop button{
+    height: 100%;
+    margin: 10px;
+}
+
+.checkbox {
+    display: inline-flex;
+    cursor: pointer;
+    position: relative;
+}
+
+.checkbox > span {
+    font-style: italic;
+    font-size: 2rem;
+    color: rgb(195, 224, 241);
+    font-family: Arial, Helvetica, sans-serif;
+    margin-left:20px;
+}
+
+.checkbox > input {
+    height: 30px;
+    width: 30px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -o-appearance: none;
+    appearance: none;
+    border: 1px solid #34495E;
+    border-radius: 4px;
+    outline: none;
+    transition-duration: 0.3s;
+    cursor: pointer;
+}
+
+.checkbox > input:checked {
+    border: 1px solid black;
+    background-color: rgb(205, 250, 175);
+}
+
+/*Deletebutton*/
+
+#deleteButton{
+    background-color:rgb(243, 103, 103);
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+    border-radius: 2px;
+}
+
+/*BOTTOM BUTTONS*/
+
+#bottomButtons{
+    display:flex;
+    justify-content: space-evenly;
+    margin-top:20px;
+    margin-bottom: 20px;
+}
+
+#bottomButtons button {
+    background-color:rgb(140, 208, 247);
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+}
+
+
 
