@@ -45,30 +45,30 @@
         <button type="submit">Push me</button>
     </form>
 
-
-    <ul>
-        <!---Add select box, show all selectbox, and individual delete button-->
-        <form th:action="@{/selectallboxes}" method="post">
-            <button type="submit">Select all</button>
-        </form>
-
-        <th:block th:each="todo : ${todos}">
-            <div>
+    <form th:action="@{/selectallboxes}" method="post">
+        <button type="submit">Select all</button>
+    </form>
 
 
-              <input class="box" type="checkbox" onChange="valueChange(this)" th:name="${todo.text}" th:value="${todo.id}" th:checked="${todo.active}"/>
-              <label th:text="${todo.text}"></label>
+        <ul>
+            <th:block th:each="todo : ${todos}">
 
-                <form th:action="@{/deleteitem}" method="post">
-                    <input type="hidden" name="id" th:value="${todo.id}" />
-                    <button type="submit">Delete</button>
-                </form>
+                    <input class="box" type="checkbox" onChange="valueChange(this)" th:name="${todo.text}" th:value="${todo.id}" th:checked="${todo.active}"/>
+                    <label th:text="${todo.text}"></label>
 
-            </div>
-            <li id="hi" ></li>
-        </th:block>
-    </ul>
 
+                    <form th:action="@{/deleteitem}" method="post">
+                        <input type="hidden" name="id" th:value="${todo.id}" />
+                        <button type="submit">Delete</button>
+                    </form>
+
+            </th:block>
+        </ul>
+
+
+
+
+<div id="buttons">
     <!---Show all button-->
     <form th:action="@{/all}" method="post">
         <button type="submit">Show all</button>
@@ -88,6 +88,7 @@
     <form th:action="@{/deleteallcompleted}" method="post">
         <button type="submit">Delete all Completed</button>
     </form>
+</div>
 
     <p th:text="${message}"></p>
 
