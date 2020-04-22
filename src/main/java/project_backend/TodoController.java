@@ -29,71 +29,49 @@ public class TodoController {
         return "redirect:todo";
     }
 
-
     //Check a todoes and change boolean in DB
     @RequestMapping(value = "/api",method = RequestMethod.PUT,produces = MediaType.APPLICATION_JSON_VALUE)
     public void updateItem(@RequestBody Todo todo){
         todoService.updateActive(todo);
     }
 
-
-    //BUTTONS:
-
     //Delete a todoes
     @PostMapping("/deleteitem")
     public String deleteItem(Model model, @RequestParam int id){
         todoService.deleteTodo(id);
-        model.addAttribute("message", "You did press the DELETE THIS ITEM button with id number " +id);
         return "redirect:todo";
     }
 
-    //Toggla mellan boolean (icheckade eller inte)
-    @PostMapping("/selectallboxes")
-    public String secectAllBoxes(Model model){
-        model.addAttribute("message", "You did press the SELECT ALL button");
-        return "todo";
-    }
-
-
+    //BUTTONS:
 
     //See all todoes
-    //samma som get all
     @PostMapping("/all")
     public String all(Model model){
-        model.addAttribute("message", "Get ALL");
         return "redirect:todo";
     }
 
-
-    //Visa alla ocheckade
+    //Delete all checked (true) todoes
+    @PostMapping("/deleteallcompleted")
+    public String deleteAllCompleted(){
+        todoService.deleteActiveTodo();
+        return "redirect:todo";
+    }
+    
+    //See all active (not checked todos/false)
     @PostMapping("/active")
     public String active(Model model){
         List<Todo> listTodo = todoService.getAllNotActive();
         model.addAttribute("todos", listTodo);
-        model.addAttribute("message", "Get all not checked");
         return "todo";
     }
 
-    //Show completed- Visa alla checkade
+    //See all completed todos (checked/true)
     @PostMapping("/showcompleted")
     public String showCompleted(Model model){
         List<Todo> listTodo = todoService.getAllActive();
         model.addAttribute("todos", listTodo);
-        model.addAttribute("message", "Get all checked");
         return "todo";
     }
-
-    //Delete all checked todoes - ta bort alla checkade
-    @PostMapping("/deleteallcompleted")
-    public String deleteAllCompleted(){
-         todoService.deleteActiveTodo();
-        return "redirect:todo";
-    }
-
-
-
-
-
 
 
 

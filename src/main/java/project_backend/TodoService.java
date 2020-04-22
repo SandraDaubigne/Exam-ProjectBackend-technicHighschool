@@ -13,8 +13,7 @@ public class TodoService {
     @Autowired
     private TodoRepository todoRepository;
 
-    //Using CrudRepository import methods to get all todos from the database
-    //And returning a list of todos.
+    //Get all todos from DB
     public List<Todo> getAll() {
         List<Todo> todos = new ArrayList<>();
         todoRepository.findAll().forEach(todos::add);
@@ -30,11 +29,13 @@ public class TodoService {
 
     //Delete a single todoes
     public void deleteTodo(int id) {
+
         todoRepository.deleteById(id);
     }
 
     //Update boolean on checked boxes or not
     public void updateActive(Todo todo) {
+
         todoRepository.save(todo);
     }
 
@@ -42,17 +43,13 @@ public class TodoService {
     public List<Todo> getAllActive(){
         List<Todo> todos = new ArrayList<>();
         todoRepository.findAll().forEach(todos::add);
-
         return todos.stream().filter(todo -> todo.getActive() == true).collect(Collectors.toList());
-
     }
 
     public List<Todo> getAllNotActive(){
         List<Todo> todos = new ArrayList<>();
         todoRepository.findAll().forEach(todos::add);
-
         return todos.stream().filter(todo -> todo.getActive() == false).collect(Collectors.toList());
-
     }
 
     public void deleteActiveTodo() {
