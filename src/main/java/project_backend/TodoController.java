@@ -56,7 +56,7 @@ public class TodoController {
         todoService.deleteActiveTodo();
         return "redirect:todo";
     }
-    
+
     //See all active (not checked todos/false)
     @PostMapping("/active")
     public String active(Model model){
