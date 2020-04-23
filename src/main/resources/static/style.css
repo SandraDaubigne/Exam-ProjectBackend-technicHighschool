@@ -121,5 +121,15 @@ input::placeholder {
     font-size: 12px;
 }
 
+#names{
+    text-align:center;
+}
+
+#names p{
+    display: inline-block;
+    color: grey;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
 
 
